@@ -18,23 +18,14 @@ textarea {
   outline: none;
   resize: none;
 }
-.footer {
-  margin-top: 60px;
-  text-align: center;
-  font-size: 13px;
-}
-.footer a {
-  color: #bbb;
-  text-decoration: none;
-}
+.footer { margin-top: 60px; text-align: center; font-size: 13px; }
+.footer a { color: #bbb; text-decoration: none; }
 </style>
 </head>
 <body>
 
 <h2>我的记事本</h2>
-
 <textarea id="note" placeholder="记录一些日常备忘……"></textarea>
-
 <div class="footer">
   <a href="javascript:void(0)" onclick="checkPassword()">爱你哟</a>
 </div>
@@ -42,20 +33,21 @@ textarea {
 <script>
 var note = document.getElementById("note");
 var saved = localStorage.getItem("my_note");
-if (saved) {
-  note.value = saved;
-}
-
+if (saved) { note.value = saved; }
 note.addEventListener("input", function () {
   localStorage.setItem("my_note", note.value);
 });
 
 function checkPassword() {
-  var pwd = prompt("请输入密码：");
-  if (pwd === "tmj5201314") {
-    window.location.href = "https://chat.iris.to/";
-  } else if (pwd !== null) {
-    alert("密码错误");
+  var pwd = prompt("请输入密码：tmj5201314");
+  // 注意：下面这行双引号里的就是你设置的真实密码，必须用英文双引号
+  if (pwd === "5201314") {
+    // 加上一句提示，让你知道代码生效了
+    alert("密码正确，正在进入...");
+    // 强制跳转写法
+    window.location.assign("https://chat.iris.to/");
+  } else if (pwd !== null && pwd !== "") {
+    alert("密码错误，请重试！");
   }
 }
 </script>
